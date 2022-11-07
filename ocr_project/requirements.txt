@@ -1,0 +1,6 @@
+django
+Pillow
+celery
+easyocr
+django-tables2
+django-crispy-forms

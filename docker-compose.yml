@@ -5,6 +5,9 @@ services:
     image: ocr_project
     # ports:
     #   - 8081:8000
+    volumes:
+      - ./project:/src/project
+      - ./media:/src/media
     command: "gunicorn -c gunicorn.conf.py project.wsgi"
   nginx:
     image: nginx

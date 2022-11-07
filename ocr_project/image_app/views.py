@@ -27,7 +27,7 @@ class ImageDataCreateView(generic.CreateView):
     
     def form_valid(self, form):
         self.object = form.save()
-        signature('process_image_test', args=(self.object.pk,),).delay()
+        # signature('process_image_test', args=(self.object.pk,),).delay()
         # tasks.process_image.delay(self.object.pk)
         return super().form_valid(form)
 

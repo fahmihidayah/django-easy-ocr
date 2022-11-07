@@ -1,10 +1,12 @@
 FROM python:3.9-alpine
-
-RUN mkdir /project
-COPY ./project /project
-COPY requirements.txt /
-COPY gunicorn.conf.py /
-COPY db.sqlite3 /
+RUN mkdir /src
+WORKDIR /src
+RUN mkdir project
+RUN mkdir media
+COPY ./project /src/project
+COPY requirements.txt /src
+COPY gunicorn.conf.py /src
+COPY db.sqlite3 /src
 
 RUN mkdir logs
 

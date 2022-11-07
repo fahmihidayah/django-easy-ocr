@@ -1,2 +1,4 @@
 python -m celery -A project --workdir project worker
 python -m celery -A project -n name_task --workdir project worker
+
+celery -A ocr_project worker -l DEBUG

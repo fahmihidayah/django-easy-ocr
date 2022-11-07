@@ -4,11 +4,14 @@ import logging.config
 
 STATIC_DIR = Path(__file__).resolve().parent.parent
 
+RESOURCE_DIR = BASE_DIR.parent
+
 ALLOWED_HOSTS = ['127.0.0.1']
-DEBUG = False
+DEBUG = True
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATE_DEBUG = False
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8001",]
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
@@ -42,9 +45,9 @@ TEMPLATES[0]["OPTIONS"].update({"loaders": loaders})
 TEMPLATES[0].update({"APP_DIRS": False})
 
 # Define STATIC_ROOT for the collectstatic command
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(RESOURCE_DIR, "static/")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(RESOURCE_DIR, 'media/')
 
 STATICFILES_DIRS = [
     STATIC_ROOT,

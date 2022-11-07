@@ -7,3 +7,4 @@
 *.pyc
 project/static/*
 /media/*
+/static/*

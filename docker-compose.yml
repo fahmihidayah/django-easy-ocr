@@ -3,6 +3,14 @@ version: '3.8'
 services:
   web:
     image: ocr_project
-    ports:
-      - 8081:8000
+    # ports:
+    #   - 8081:8000
     command: "gunicorn -c gunicorn.conf.py project.wsgi"
+  nginx:
+    image: nginx
+    volumes:
+      - ./media:/media
+      - ./static:/static
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "8001:80"

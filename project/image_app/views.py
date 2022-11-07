@@ -30,5 +30,7 @@ class ImageDataCreateView(generic.CreateView):
         signature('process_image', args=(self.object.pk, str(self.object.image),),).delay()
         return super().form_valid(form)
 
-class ImageDataDetailView(generic.TemplateView):
-    template_name = 'image_app/form_image_app.html'
+class ImageDataDetailView(generic.DetailView):
+    template_name = 'image_app/detail_image_app.html'
+    model = models.ImageData
+    queryset = models.ImageData.objects.all()

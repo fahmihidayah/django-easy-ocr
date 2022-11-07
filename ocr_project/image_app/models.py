@@ -13,6 +13,8 @@ class ImageData(models.Model):
 
     status: models.IntegerField = models.IntegerField(default=0)
 
+    clean_text: models.TextField = models.TextField(max_length=5000, default='', null=True)
+
     created_at: models.DateTimeField = models.DateTimeField(auto_now_add=True, editable=False)
 
     updated_at: models.DateTimeField = models.DateTimeField(auto_now=True, editable=False)

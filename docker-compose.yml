@@ -1,19 +1,30 @@
 version: '3.8'
 
 services:
-  web:
-    image: ocr_project
-    # ports:
-    #   - 8081:8000
-    volumes:
-      - ./project:/src/project
-      - ./media:/src/media
-    command: "gunicorn -c gunicorn.conf.py project.wsgi"
-  nginx:
-    image: nginx
-    volumes:
-      - ./media:/media
-      - ./static:/static
-      - ./nginx:/etc/nginx/conf.d
+  rabit_mq:
+    image: rabbitmq:3-management
     ports:
-      - "8001:80"
+      - 5672:5672
+      - 15672:15672
+#  web:
+#    image: ocr_processor
+#    # ports:
+#    #   - 8081:8000
+#    volumes:
+#      - ./project:/src/project
+#      - ./media:/src/media
+#    command: "gunicorn -c gunicorn.conf.py project.wsgi"
+#  nginx:
+#    image: nginx
+#    volumes:
+#      - ./media:/media
+#      - ./static:/static
+#      - ./nginx:/etc/nginx/conf.d
+#    ports:
+#      - "8001:80"
+
+#  django_image_processor:
+#    image: ocr_project
+#    restart: on-failure
+#    links:
+#      - rabit_mq

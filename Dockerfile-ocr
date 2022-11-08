@@ -1,12 +1,22 @@
-FROM python:3.9-alpine
+FROM python:3.9.15-bullseye
+#FROM python:3.12-rc-bullseye
 
-COPY ./ocr_project /home
+RUN mkdir /src
+RUN mkdir /src/ocr_project
+RUN mkdir /src/media
 
-WORKDIR /home
+COPY ./ocr_project /src/ocr_project
 
-RUN pip install -r requirements.txt
+COPY ./media /src/media
 
-EXPOSE 8888
+COPY db.sqlite3 /src
 
-# CMD ["python3", "project/manage.py", "runserver", "0.0.0.0:8888"]
+RUN pip install --upgrade pip
+RUN pip install importlib_metadata
+RUN pip install torch>=1.9.0 torchvision>=0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install -r /src/ocr_project/requirements.txt
+#
+WORKDIR /src/ocr_project
+
+CMD ["celery", "-A", "ocr_project", "worker", "-l", "DEBUG"]
 # CMD ["gunicorn", "-c", "gunicorn.conf.py", "project.wsgi"]

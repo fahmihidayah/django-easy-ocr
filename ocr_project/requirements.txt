@@ -1,6 +1,6 @@
 django
 Pillow
-celery
-easyocr
+celery==5.2.0
+easyocr==1.6.2
 django-tables2
 django-crispy-forms

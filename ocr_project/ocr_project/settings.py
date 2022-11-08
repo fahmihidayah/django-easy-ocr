@@ -128,4 +128,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = 'pyamqp://localhost'
+CELERY_BROKER_URL = 'pyamqp://rabit_mq'
+# CELERY_BROKER_URL = 'pyamqp://localhost'
